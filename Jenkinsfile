@@ -22,7 +22,7 @@ node {
 	
 	stage 'Mobile testing'
 	lock('Samsung-galaxy-Note-7') {
-	echo 'Do something here that requires unique access to the resource'
+	echo 'Battery tests :)'
 	// any other build will wait until the one locking the resource leaves this block
 	}
 	
