@@ -18,7 +18,7 @@ node {
 	)
 	
 	echo "Tests Ok"   
-	milestone1
+	milestone 1
 	
 	stage 'Mobile testing'
 	lock('Samsung-galaxy-Note-7') {
@@ -41,7 +41,7 @@ node {
 }
 
 input message: 'Deploy to prod ?', submitter: 'big_boss'
-milestone2
+milestone 2
 
 node {
 
