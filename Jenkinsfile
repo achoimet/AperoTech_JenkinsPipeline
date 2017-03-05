@@ -15,6 +15,7 @@ node {
 	parallel (
 		phase1: { sh "echo p1; sleep 10s; echo phase1 - Qa Tests" },
 		phase2: { sh "echo p2; sleep 15s; echo phase2 - Perf Tests" }
+	)
 	
 	echo "Tests Ok"   
 	milestone1
