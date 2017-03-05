@@ -2,6 +2,9 @@ pipeline {
     agent any
     stages {
         stage('Unit Test') {
+			environment { 
+                API_TEST_TOKEN = credentials('my-prefined-secret-token') 
+            }
             steps {
                 echo 'Run tests'
 				sleep 5
@@ -24,6 +27,9 @@ pipeline {
         }
 		
 		stage('Prod') {
+			when {
+            	branch 'master'
+        	}
             steps {
                 echo 'Deploy to prod'
 				sleep 3
