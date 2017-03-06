@@ -1,5 +1,4 @@
 node {
-	if (env.BRANCH_NAME != 'master') {
 
 	stage 'Checkout'
 	checkout scm
@@ -18,7 +17,6 @@ node {
 	)
 	
 	echo "Tests Ok"   
-	milestone 1
 	
 	stage 'Mobile testing'
 	lock('Samsung-galaxy-Note-7') {
@@ -26,28 +24,40 @@ node {
 	// any other build will wait until the one locking the resource leaves this block
 	}
 	
-	}
 }
+
 input 'Mobile testing OK, nothing exploded ?'
 
 node {
 	
-	unstash 'workspace'
-	
 	stage 'Integration tests'
+	unstash 'workspace'
 	sleep 5
-	
-	stage 'Deploy to prod?'	
+
 }
 
-input message: 'Deploy to prod ?', submitter: 'big_boss'
-milestone 2
+if (env.BRANCH_NAME == 'master') {
 
-node {
+	input message: 'Release ?', submitter: 'antoine_c'
+	milestone 1
+	node {
 
-	unstash 'workspace'
-	
-	stage 'Deploy to Prod'
-	sleep 5
+		stage 'release'
+		unstash 'workspace'	
+		sleep 5
 
+	}
+
+	input message: 'Deploy to prod ?', submitter: 'big_boss'
+	milestone 2
+
+	node {
+
+		stage 'Deploy to prod?'	
+		unstash 'workspace'
+		
+		stage 'Deploy to Prod'
+		sleep 5
+
+	}
 }
