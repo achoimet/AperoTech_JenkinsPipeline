@@ -40,7 +40,8 @@ if (env.BRANCH_NAME == 'master') {
 
   milestone 1
 	input message: 'Release ?', submitter: 'antoine_c'
-	
+	milestone 2
+  
 	node {
 
 		stage 'release'
@@ -49,8 +50,9 @@ if (env.BRANCH_NAME == 'master') {
 
 	}
 
+  milestone 3
 	input message: 'Deploy to prod ?', submitter: 'big_boss'
-	milestone 2
+	milestone 4
 
 	node {
 
