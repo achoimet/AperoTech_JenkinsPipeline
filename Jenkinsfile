@@ -1,6 +1,6 @@
 node {
 
-	stage 'Checkout'
+	stage 'Checkoutt'
 	checkout scm
 	stash 'workspace'
 
