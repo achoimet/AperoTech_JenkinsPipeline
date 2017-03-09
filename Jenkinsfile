@@ -6,6 +6,7 @@ node {
 
 	stage 'Unit Test'
 	sleep 5
+  sayHello.call('Public')
 	
 	stage 'Deploy on tests platforms'
 	sleep 5
