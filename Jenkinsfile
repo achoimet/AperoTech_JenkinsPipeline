@@ -58,6 +58,14 @@ if (env.BRANCH_NAME == 'master') {
 		
 		stage 'Deploy to Prod'
 		sleep 5
+    
+    timeout(1) {
+    waitUntil {
+        def r = sh script: 'wget -q https://jenkins.io/ -O /dev/null', returnStatus: true
+        return (r == 0);
+    }
+    slackSend channel: 'aperotech_pipeline', color: 'good', message: 'Prod OK', teamDomain: 'valeuriad', tokenCredentialId: 'slackbot'
+    }
 
 	}
 }
