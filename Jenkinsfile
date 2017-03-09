@@ -38,8 +38,9 @@ node {
 
 if (env.BRANCH_NAME == 'master') {
 
+  milestone 1
 	input message: 'Release ?', submitter: 'antoine_c'
-	milestone 1
+	
 	node {
 
 		stage 'release'
