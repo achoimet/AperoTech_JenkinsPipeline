@@ -1,11 +1,14 @@
 node {
-
-	stage 'Checkout'
-	checkout scm
+  checkout scm
+  
+	stage 'Build'
+  sh 'npm install --global mocha'
+	sh 'npm install'
+  
 	stash 'workspace'
 
 	stage 'Unit Test'
-	sleep 5
+	sh 'mocha tests --recursive'
 	
 	stage 'Deploy on tests platforms'
 	sleep 5
